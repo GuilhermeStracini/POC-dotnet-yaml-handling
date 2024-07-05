@@ -13,6 +13,15 @@
 
 ---
 
+## Useful links
+
+- https://yaml.org/spec/
+- https://ruudvanasseldonk.com/2023/01/11/the-yaml-document-from-hell
+- https://www.luisllamas.es/en/yamldotnet/
+- https://learnxinyminutes.com/docs/yaml
+
+---
+
 ## Libraries
 
 - [YamlDotNet](https://github.com/aaubry/YamlDotNet)

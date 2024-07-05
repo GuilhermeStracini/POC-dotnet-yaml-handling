@@ -19,6 +19,7 @@
 - https://ruudvanasseldonk.com/2023/01/11/the-yaml-document-from-hell
 - https://www.luisllamas.es/en/yamldotnet/
 - https://learnxinyminutes.com/docs/yaml
+- https://medium.com/medialesson/handle-yaml-files-with-net-fe92ce94cf94
 
 ---
 

@@ -1,13 +1,14 @@
-﻿namespace POCTemplate;
-using YamlDotNet.Serialization;
+﻿using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
-internal class Person { public string Name { get; set; } = string.Empty; public int Age { get; set; } }
+
+namespace POCYamlHandling;
 
 internal static class Program
 {
     public static void Main()
     {
-        var yaml = @"
+        var yaml =
+            @"
         name: John Doe
         age: 30
         ";
@@ -24,7 +25,5 @@ internal static class Program
 
         var yamlString = serializer.Serialize(person);
         Console.WriteLine(yamlString);
-        // This is a placeholder for the main entry point of the application.
-        Console.WriteLine("Hello, World!");
     }
 }

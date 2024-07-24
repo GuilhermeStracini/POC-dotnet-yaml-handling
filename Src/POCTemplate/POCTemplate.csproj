@@ -7,4 +7,5 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+    <PackageReference Include="YamlDotNet" Version="11.2.1" />
 </Project>

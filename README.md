@@ -23,6 +23,13 @@
 
 ---
 
+## YAML Handling
+
+We have integrated the `YamlDotNet` library for YAML parsing and serialization.
+
+### Example Usage
+Refer to the example in `Src/POCTemplate/Program.cs` for a basic demonstration.
+
 ## Libraries
 
 - [YamlDotNet](https://github.com/aaubry/YamlDotNet)

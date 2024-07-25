@@ -3,6 +3,7 @@ using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
 namespace POCYamlHandling.Tests;
+using SharpYaml.Serialization;
 
 public class UnitTest1
 {
@@ -38,6 +39,32 @@ public class UnitTest1
         var person = new Person { Name = "Jane Doe", Age = 25 };
         var serializer = new SerializerBuilder().Build();
 
+    [Fact]
+    public void SharpYamlShouldDeserializeYaml()
+    {
+        const string yaml = "firstName: Jane\nlastName: Doe";
+        var serializer = new SharpYaml.Serialization.Serializer();
+
+        var person = serializer.Deserialize<Person>(new StringReader(yaml));
+
+        person.FirstName.Should().Be("Jane");
+        person.LastName.Should().Be("Doe");
+    }
+
+    [Fact]
+    public void SharpYamlShouldSerializeToYaml()
+    {
+        var person = new Person { FirstName = "Jane", LastName = "Doe" };
+        var serializer = new SharpYaml.Serialization.Serializer();
+
+        var yaml = new StringWriter();
+        serializer.Serialize(yaml, person);
+        var yamlString = yaml.ToString();
+
+        yamlString.Should().Contain("firstName: Jane");
+        yamlString.Should().Contain("lastName: Doe");
+    }
+}
         var yaml = serializer.Serialize(person);
 
         yaml.Should().Contain("Name: Jane Doe");

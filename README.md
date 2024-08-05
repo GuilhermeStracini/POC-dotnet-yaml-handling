@@ -25,7 +25,7 @@
 
 ## YAML Handling
 
-We have integrated the `YamlDotNet` library for YAML parsing and serialization.
+We have integrated the `YamlDotNet` and `SharpYaml` libraries for YAML parsing and serialization.
 
 ### Example Usage
 Refer to the example in `Src/POCTemplate/Program.cs` for a basic demonstration.

@@ -20,9 +20,11 @@ internal static class Program
         age: 30
         ";
 
-        Console.WriteLine("---------------------------------------------------------------");
+        var line = new string('-', 60);
+
+        Console.WriteLine(line);
         Console.WriteLine("Sharp YAML");
-        Console.WriteLine("---------------------------------------------------------------");
+        Console.WriteLine(line);
         var sharpYaml = new SharpYamlSerializer();
         var sharpYamlContent = sharpYaml.Deserialize<Person>(yaml);
         var sharpYamlResult = sharpYaml.Serialize(sharpYamlContent);
@@ -30,9 +32,9 @@ internal static class Program
         Console.WriteLine(sharpYamlResult);
         Console.WriteLine("\r\n");
 
-        Console.WriteLine("---------------------------------------------------------------");
+        Console.WriteLine(line);
         Console.WriteLine("YAML DotNet");
-        Console.WriteLine("---------------------------------------------------------------");
+        Console.WriteLine(line);
         var yamlDotNet = new YamlDotNetSerializer();
         var yamlDotNetContent = yamlDotNet.Deserialize<Person>(yaml);
         var yamlDotNetResult = yamlDotNet.Serialize(yamlDotNetContent);

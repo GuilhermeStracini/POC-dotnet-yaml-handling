@@ -1,51 +1,43 @@
-﻿using YamlDotNet.Serialization;
-using SharpYaml.Serialization;
-using YamlDotNet.Serialization.NamingConventions;
+﻿using POCYamlHandling.Serializers;
 
 namespace POCYamlHandling;
 
+/// <summary>
+/// Class Program.
+/// </summary>
 internal static class Program
 {
-    public static void Main()
+    /// <summary>
+    /// Defines the entry point of the application.
+    /// </summary>
+    static void Main()
     {
+        Console.WriteLine("Hello, World!");
+
         var yaml =
             @"
         name: John Doe
         age: 30
         ";
 
-        var deserializer = new DeserializerBuilder()
-            .WithNamingConvention(CamelCaseNamingConvention.Instance)
-            .Build();
-        var yamlSharp = @"
-        firstName: John
-        lastName: Doe
-        ";
+        Console.WriteLine("---------------------------------------------------------------");
+        Console.WriteLine("Sharp YAML");
+        Console.WriteLine("---------------------------------------------------------------");
+        var sharpYaml = new SharpYamlSerializer();
+        var sharpYamlContent = sharpYaml.Deserialize<Person>(yaml);
+        var sharpYamlResult = sharpYaml.Serialize(sharpYamlContent);
+        Console.WriteLine(sharpYamlContent);
+        Console.WriteLine(sharpYamlResult);
+        Console.WriteLine("\r\n");
 
-        var input = new StringReader(yamlSharp);
-        var yamlStream = new SharpYaml.Serialization.Serializer();
-        var yamlObject = yamlStream.Deserialize(input);
-
-        var output = new StringWriter();
-        yamlStream.Serialize(output, yamlObject);
-        var yamlResult = output.ToString();
-
-        Console.WriteLine(yamlResult);
-
-        var sharpSerializer = new SharpYaml.Serialization.Serializer();
-        var sharpPerson = sharpSerializer.Deserialize<Person>(new StringReader(yamlSharp));
-
-        var sharpYamlString = new StringWriter();
-        sharpSerializer.Serialize(sharpYamlString, sharpPerson);
-        Console.WriteLine(sharpYamlString.ToString());
-
-        var person = deserializer.Deserialize<Person>(yaml);
-
-        var serializer = new SerializerBuilder()
-            .WithNamingConvention(CamelCaseNamingConvention.Instance)
-            .Build();
-
-        var yamlString = serializer.Serialize(person);
-        Console.WriteLine(yamlString);
+        Console.WriteLine("---------------------------------------------------------------");
+        Console.WriteLine("YAML DotNet");
+        Console.WriteLine("---------------------------------------------------------------");
+        var yamlDotNet = new YamlDotNetSerializer();
+        var yamlDotNetContent = yamlDotNet.Deserialize<Person>(yaml);
+        var yamlDotNetResult = yamlDotNet.Serialize(yamlDotNetContent);
+        Console.WriteLine(yamlDotNetContent);
+        Console.WriteLine(yamlDotNetResult);
+        Console.WriteLine("\r\n");
     }
 }

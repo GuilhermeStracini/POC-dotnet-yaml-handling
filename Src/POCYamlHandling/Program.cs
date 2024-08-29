@@ -1,29 +1,45 @@
-﻿using YamlDotNet.Serialization;
-using YamlDotNet.Serialization.NamingConventions;
+﻿using POCYamlHandling.Serializers;
 
 namespace POCYamlHandling;
 
+/// <summary>
+/// Class Program.
+/// </summary>
 internal static class Program
 {
-    public static void Main()
+    /// <summary>
+    /// Defines the entry point of the application.
+    /// </summary>
+    static void Main()
     {
+        Console.WriteLine("Hello, World!");
+
         var yaml =
             @"
         name: John Doe
         age: 30
         ";
 
-        var deserializer = new DeserializerBuilder()
-            .WithNamingConvention(CamelCaseNamingConvention.Instance)
-            .Build();
+        var line = new string('-', 60);
 
-        var person = deserializer.Deserialize<Person>(yaml);
+        Console.WriteLine(line);
+        Console.WriteLine("Sharp YAML");
+        Console.WriteLine(line);
+        var sharpYaml = new SharpYamlSerializer();
+        var sharpYamlContent = sharpYaml.Deserialize<Person>(yaml);
+        var sharpYamlResult = sharpYaml.Serialize(sharpYamlContent);
+        Console.WriteLine(sharpYamlContent);
+        Console.WriteLine(sharpYamlResult);
+        Console.WriteLine("\r\n");
 
-        var serializer = new SerializerBuilder()
-            .WithNamingConvention(CamelCaseNamingConvention.Instance)
-            .Build();
-
-        var yamlString = serializer.Serialize(person);
-        Console.WriteLine(yamlString);
+        Console.WriteLine(line);
+        Console.WriteLine("YAML DotNet");
+        Console.WriteLine(line);
+        var yamlDotNet = new YamlDotNetSerializer();
+        var yamlDotNetContent = yamlDotNet.Deserialize<Person>(yaml);
+        var yamlDotNetResult = yamlDotNet.Serialize(yamlDotNetContent);
+        Console.WriteLine(yamlDotNetContent);
+        Console.WriteLine(yamlDotNetResult);
+        Console.WriteLine("\r\n");
     }
 }

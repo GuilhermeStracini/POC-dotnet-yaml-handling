@@ -1,10 +1,12 @@
-﻿using POCYamlHandling.Serializers;
+﻿using System.Diagnostics.CodeAnalysis;
+using POCYamlHandling.Serializers;
 
 namespace POCYamlHandling;
 
 /// <summary>
 /// Class Program.
 /// </summary>
+[ExcludeFromCodeCoverage]
 internal static class Program
 {
     /// <summary>

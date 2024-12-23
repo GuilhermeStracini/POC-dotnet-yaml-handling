@@ -6,6 +6,7 @@ on:
 permissions:
   id-token: write
 
+  contents: read
 jobs:
   share:
     name: Upload Sonar Results to Pixeebot

@@ -1,7 +1,17 @@
-﻿namespace POCYamlHandling.Serializers;
+﻿using System.Text.Json;
+using SharpYaml;
+
+namespace POCYamlHandling.Serializers;
 
 public class SharpYamlSerializer : ISerializer
 {
+    private static readonly YamlSerializerOptions Options = new()
+    {
+        TypeInfoResolver = new ReflectionYamlTypeInfoResolver(),
+        PropertyNameCaseInsensitive = true,
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+    };
+
     /// <summary>
     /// Serializes an object of type <typeparamref name="T"/> into a YAML formatted string.
     /// </summary>
@@ -16,11 +26,7 @@ public class SharpYamlSerializer : ISerializer
     /// </remarks>
     public string Serialize<T>(T obj)
     {
-        var serializer = new SharpYaml.Serialization.Serializer();
-
-        var yaml = new StringWriter();
-        serializer.Serialize(yaml, obj);
-        return yaml.ToString();
+        return YamlSerializer.Serialize(obj, Options);
     }
 
     /// <summary>
@@ -37,7 +43,6 @@ public class SharpYamlSerializer : ISerializer
     /// </remarks>
     public T Deserialize<T>(string yaml)
     {
-        var serializer = new SharpYaml.Serialization.Serializer();
-        return serializer.Deserialize<T>(new StringReader(yaml));
+        return YamlSerializer.Deserialize<T>(yaml, Options);
     }
 }
